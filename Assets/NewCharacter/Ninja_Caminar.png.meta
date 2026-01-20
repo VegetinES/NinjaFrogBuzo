@@ -1,0 +1,515 @@
+fileFormatVersion: 2
+guid: 97e15e4970075c5419b02f777ffcfd6a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4981486112354347161
+    second: Ninja_Caminar_0
+  - first:
+      213: 1029222077772890197
+    second: Ninja_Caminar_1
+  - first:
+      213: 8248923036868461632
+    second: Ninja_Caminar_2
+  - first:
+      213: -7901126861509718729
+    second: Ninja_Caminar_3
+  - first:
+      213: -3911418582462527378
+    second: Ninja_Caminar_4
+  - first:
+      213: 3727911304819173542
+    second: Ninja_Caminar_5
+  - first:
+      213: 4960138527868301087
+    second: Ninja_Caminar_6
+  - first:
+      213: -2874425177923952640
+    second: Ninja_Caminar_7
+  - first:
+      213: -6575310795866046915
+    second: Ninja_Caminar_8
+  - first:
+      213: -6079555395218118908
+    second: Ninja_Caminar_9
+  - first:
+      213: -7288962332423892784
+    second: Ninja_Caminar_10
+  - first:
+      213: 745314766284796231
+    second: Ninja_Caminar_11
+  - first:
+      213: 184211134036821721
+    second: Ninja_Caminar_12
+  - first:
+      213: -8339864147720025390
+    second: Ninja_Caminar_13
+  - first:
+      213: -7598458387937330132
+    second: Ninja_Caminar_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 1000
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Ninja_Caminar_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 724
+        width: 173
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9982c64e93bc12540800000000000000
+      internalID: 4981486112354347161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ninja_Caminar_1
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 723
+        width: 173
+        height: 301
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55084a4d608884e00800000000000000
+      internalID: 1029222077772890197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ninja_Caminar_2
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 723
+        width: 173
+        height: 301
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 044c4102ccf0a7270800000000000000
+      internalID: 8248923036868461632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ninja_Caminar_3
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 725
+        width: 172
+        height: 299
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73d8a6e3bfe895290800000000000000
+      internalID: -7901126861509718729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ninja_Caminar_4
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 725
+        width: 172
+        height: 299
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e688578d589d7b9c0800000000000000
+      internalID: -3911418582462527378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ninja_Caminar_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 401
+        width: 173
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a8e8e594933cb330800000000000000
+      internalID: 3727911304819173542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ninja_Caminar_6
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 401
+        width: 173
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1fa15e06b3f5d440800000000000000
+      internalID: 4960138527868301087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ninja_Caminar_7
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 398
+        width: 173
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0006760b78dfb18d0800000000000000
+      internalID: -2874425177923952640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ninja_Caminar_8
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 398
+        width: 172
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3efc9c2badcfb4a0800000000000000
+      internalID: -6575310795866046915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ninja_Caminar_9
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 401
+        width: 172
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 407e6b3349411aba0800000000000000
+      internalID: -6079555395218118908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ninja_Caminar_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 79
+        width: 173
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d0dba2906768da90800000000000000
+      internalID: -7288962332423892784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ninja_Caminar_11
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 82
+        width: 173
+        height: 297
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7413242c4d3e75a00800000000000000
+      internalID: 745314766284796231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ninja_Caminar_12
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 78
+        width: 173
+        height: 301
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d6cfe7ec037e8200800000000000000
+      internalID: 184211134036821721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ninja_Caminar_13
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 78
+        width: 172
+        height: 301
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2dac1208eb9d24c80800000000000000
+      internalID: -8339864147720025390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ninja_Caminar_14
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 78
+        width: 172
+        height: 301
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2c7862ca5adc8690800000000000000
+      internalID: -7598458387937330132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Ninja_Caminar_0: 4981486112354347161
+      Ninja_Caminar_1: 1029222077772890197
+      Ninja_Caminar_10: -7288962332423892784
+      Ninja_Caminar_11: 745314766284796231
+      Ninja_Caminar_12: 184211134036821721
+      Ninja_Caminar_13: -8339864147720025390
+      Ninja_Caminar_14: -7598458387937330132
+      Ninja_Caminar_2: 8248923036868461632
+      Ninja_Caminar_3: -7901126861509718729
+      Ninja_Caminar_4: -3911418582462527378
+      Ninja_Caminar_5: 3727911304819173542
+      Ninja_Caminar_6: 4960138527868301087
+      Ninja_Caminar_7: -2874425177923952640
+      Ninja_Caminar_8: -6575310795866046915
+      Ninja_Caminar_9: -6079555395218118908
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
