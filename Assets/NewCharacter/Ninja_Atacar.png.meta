@@ -142,9 +142,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 126
+        y: 724
         width: 172
-        height: 898
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,9 +163,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 172
-        y: 126
-        width: 173
-        height: 898
+        y: 724
+        width: 172
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,9 +184,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 344
-        y: 126
-        width: 185
-        height: 898
+        y: 724
+        width: 172
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -204,10 +204,10 @@ TextureImporter:
       name: Ninja_Atacar_3
       rect:
         serializedVersion: 2
-        x: 515
-        y: 425
-        width: 173
-        height: 599
+        x: 516
+        y: 724
+        width: 172
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -225,10 +225,10 @@ TextureImporter:
       name: Ninja_Atacar_4
       rect:
         serializedVersion: 2
-        x: 687
-        y: 425
-        width: 173
-        height: 599
+        x: 688
+        y: 724
+        width: 172
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,10 +242,178 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Ninja_Atacar_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 424
+        width: 172
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9acea243d6423b3448ee33c7e8d271d2
+      internalID: 627855970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ninja_Atacar_6
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 424
+        width: 172
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca2be15df922bec43aa0359d05ca293a
+      internalID: 386526148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ninja_Atacar_7
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 424
+        width: 172
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e93118021ff9f114ebdfb7c78f7b6486
+      internalID: -1796345783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ninja_Atacar_8
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 424
+        width: 172
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb92ea5219ded6842bd778cffe44c5bc
+      internalID: -68512761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ninja_Atacar_9
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 424
+        width: 172
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75dc1829ad40458418ab648eb2fb53c0
+      internalID: 1796210535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ninja_Atacar_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 124
+        width: 172
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a462f2fd487be5247b88ab932183f8d2
+      internalID: -514747529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ninja_Atacar_11
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 124
+        width: 172
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8502043247180484996bab5aff8b4045
+      internalID: 520510526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ninja_Atacar_12
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 124
+        width: 182
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db66404df48b0fa449365bc874f8d646
+      internalID: -313201915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e7bee32f94f20d2498f800180d9918a9
     internalID: 0
     vertices: []
     indices: 
@@ -255,9 +423,19 @@ TextureImporter:
     nameFileIdTable:
       Ninja_Atacar_0: 7622166177965381451
       Ninja_Atacar_1: -673854987421293822
+      Ninja_Atacar_10: -514747529
+      Ninja_Atacar_11: 520510526
+      Ninja_Atacar_12: -313201915
+      Ninja_Atacar_13: -1326786753
+      Ninja_Atacar_14: -872250171
       Ninja_Atacar_2: 5364640558757557764
       Ninja_Atacar_3: -7879511313884762377
       Ninja_Atacar_4: 79270117608294612
+      Ninja_Atacar_5: 627855970
+      Ninja_Atacar_6: 386526148
+      Ninja_Atacar_7: -1796345783
+      Ninja_Atacar_8: -68512761
+      Ninja_Atacar_9: 1796210535
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
