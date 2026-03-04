@@ -19,20 +19,14 @@ public class GameManager: MonoBehaviour
         Debug.Log("✅ Conectado a Photon");
         Debug.Log("¿Soy MasterClient? " + PhotonNetwork.IsMasterClient);
         Debug.Log("Jugadores en sala: " + PhotonNetwork.CurrentRoom.PlayerCount);
-        
-        // CORREGIDO: Posiciones arriba del mapa, no debajo
-        if (PhotonNetwork.IsMasterClient)
-        {
-            Debug.Log("🐸 SOY MASTER - Instanciando FROG en posición (-3, 3, 0)");
-            GameObject frog = PhotonNetwork.Instantiate("Frog", new Vector3(-3, 3, 0), Quaternion.identity);
-            Debug.Log("Frog instanciado: " + frog.name);
-        }
-        else
-        {
-            Debug.Log("🤿 SOY CLIENTE - Instanciando VIRTUALGUY en posición (3, 3, 0)");
-            GameObject virtualGuy = PhotonNetwork.Instantiate("VirtualGuy", new Vector3(3, 3, 0), Quaternion.identity);
-            Debug.Log("VirtualGuy instanciado: " + virtualGuy.name);
-        }
+
+        string[] prefabs = { "Frog", "VirtualGuy", "Ninja" };
+        Vector3[] positions = { new Vector3(-3, 3, 0), new Vector3(3, 3, 0), new Vector3(0, 5, 0) };
+
+        int index = Mathf.Clamp(PhotonNetwork.LocalPlayer.ActorNumber - 1, 0, prefabs.Length - 1);
+        Debug.Log("🎮 Jugador ActorNumber: " + PhotonNetwork.LocalPlayer.ActorNumber + " → Instanciando: " + prefabs[index]);
+        GameObject player = PhotonNetwork.Instantiate(prefabs[index], positions[index], Quaternion.identity);
+        Debug.Log("Personaje instanciado: " + player.name);
         
         Debug.Log("=== Verificando elementos en escena ===");
         GameObject grid = GameObject.Find("Grid");

@@ -212,7 +212,7 @@ namespace Photon.Pun
         /// </summary>
         /// <remarks>
         /// As starting coroutines causes a little memnory garbage, you may want to disable this option but it is
-        /// also good enough to not return IEnumerable from methods with the attribute PunRPC.
+        /// also good enough to not return IEnumerable from methods with the attribite PunRPC.
         /// </remarks>
         public static bool RunRpcCoroutines = true;
 
@@ -262,8 +262,7 @@ namespace Photon.Pun
                 _AsyncLevelLoadingOperation.allowSceneActivation = false;
                 _AsyncLevelLoadingOperation = null;
             }
-            
-            rpcEvent.Clear();   // none of the last RPC parameters are needed anymore
+
 
             bool wasInRoom = NetworkingClient.CurrentRoom != null;
             // when leaving a room, we clean up depending on that room's settings.
@@ -304,9 +303,7 @@ namespace Photon.Pun
                     }
                     // For non-instantiated objects (scene objects) - reset the view
                     else
-                    {
                         view.ResetPhotonView(true);
-                    }
                 }
 
                 foreach (GameObject go in instantiatedGos)
@@ -1003,7 +1000,7 @@ namespace Photon.Pun
             bool isViewListed = photonViewList.TryGetValue(netView.ViewID, out listedView);
             if (isViewListed)
             {
-                // if some other view is in the list already, we got a problem. it might be indestructible. print out error
+                // if some other view is in the list already, we got a problem. it might be undestructible. print out error
                 if (netView != listedView)
                 {
                     Debug.LogError(string.Format("PhotonView ID duplicate found: {0}. New: {1} old: {2}. Maybe one wasn't destroyed on scene load?! Check for 'DontDestroyOnLoad'. Destroying old entry, adding new.", netView.ViewID, netView, listedView));
@@ -1018,7 +1015,6 @@ namespace Photon.Pun
 
             // Debug.Log("adding view to known list: " + netView);
             photonViewList.Add(netView.ViewID, netView);
-            netView.removedFromLocalViewList = false;
 
             //Debug.LogError("view being added. " + netView);	// Exit Games internal log
 
@@ -1060,7 +1056,7 @@ namespace Photon.Pun
         /// This clears the cache of any player/actor who's no longer in the room (making it a simple clean-up option for a new master)
         private static void RemoveCacheOfLeftPlayers()
         {
-            ParameterDictionary opParameters = new ParameterDictionary(2);
+            Dictionary<byte, object> opParameters = new Dictionary<byte, object>();
             opParameters[ParameterCode.Code] = (byte)0;		// any event
             opParameters[ParameterCode.Cache] = (byte)EventCaching.RemoveFromRoomCacheForActorsLeft;    // option to clear the room cache of all events of players who left
 
@@ -1803,10 +1799,7 @@ namespace Photon.Pun
             PhotonView view = GetPhotonView(viewID);
             if (view == null)
             {
-                if (PhotonNetwork.LogLevel >= PunLogLevel.Informational)
-                {
-                    Debug.LogWarning("Received OnSerialization for view ID " + viewID + ". We have no such PhotonView! Ignore this if you're joining or leaving a room. State: " + NetworkingClient.State);
-                }
+                Debug.LogWarning("Received OnSerialization for view ID " + viewID + ". We have no such PhotonView! Ignore this if you're joining or leaving a room. State: " + NetworkingClient.State);
                 return;
             }
 
@@ -2245,15 +2238,11 @@ namespace Photon.Pun
                 case PunEvent.CloseConnection:
 
                     // MasterClient "requests" a disconnection from us
-                    if (PhotonNetwork.EnableCloseConnection == false)
+                    if (originatingPlayer == null || !originatingPlayer.IsMasterClient)
                     {
-                        Debug.LogWarning("CloseConnection received from " + originatingPlayer + ". PhotonNetwork.EnableCloseConnection is false. Ignoring the request (this client stays in the room).");
+                        Debug.LogError("Error: Someone else(" + originatingPlayer + ") then the masterserver requests a disconnect!");
                     }
-                    else if (originatingPlayer == null || !originatingPlayer.IsMasterClient)
-                    {
-                        Debug.LogWarning("CloseConnection received from " + originatingPlayer + ". That player is not the Master Client. " + PhotonNetwork.MasterClient + " is.");
-                    }
-                    else if (PhotonNetwork.EnableCloseConnection)
+                    else
                     {
                         PhotonNetwork.LeaveRoom(false);
                     }
@@ -2261,11 +2250,7 @@ namespace Photon.Pun
                     break;
 
                 case PunEvent.DestroyPlayer:
-                    Hashtable evData = photonEvent.CustomData as Hashtable;
-                    if (evData == null)
-                    {
-                        break;
-                    }
+                    Hashtable evData = (Hashtable)photonEvent.CustomData;
                     int targetPlayerId = (int)evData[keyByteZero];
                     if (targetPlayerId >= 0)
                     {
@@ -2426,16 +2411,6 @@ namespace Photon.Pun
                             int newOwnerId = viewOwnerPair[i];
 
                             PhotonView view = GetPhotonView(viewId);
-                            if (view == null)
-                            {
-                                if (PhotonNetwork.LogLevel >= PunLogLevel.ErrorsOnly)
-                                {
-                                    Debug.LogErrorFormat("Failed to find a PhotonView with ID={0} for incoming OwnershipUpdate event (newOwnerActorNumber={1}), sender={2}. If you load scenes, make sure to pause the message queue.", viewId, newOwnerId, actorNr);
-                                }
-
-                                continue;
-                            }
-
                             Player prevOwner = view.Owner;
                             Player newOwner = CurrentRoom.GetPlayer(newOwnerId, true);
 
@@ -2451,7 +2426,7 @@ namespace Photon.Pun
                         }
 
                         // Initialize all views. Typically this is just fired on a new client after it joins a room and gets the first OwnershipUpdate from the Master.
-                        // This was moved from PhotonHandler OnJoinedRoom to here, to allow objects to retain controller = -1 until an controller is actually known.
+                        // This was moved from PhotonHandler OnJoinedRoom to here, to allow objects to retain controller = -1 until an controller is actually knownn.
                         foreach (var view in PhotonViewCollection)
                         {
                             if (!reusablePVHashset.Contains(view))
@@ -2530,17 +2505,17 @@ namespace Photon.Pun
 
 
             // the dev region overrides the best region selection in "development" builds (unless it was set but is empty).
-            
-            #if UNITY_EDITOR
+
+#if UNITY_EDITOR
             if (!PhotonServerSettings.DevRegionSetOnce)
             {
                 // if no dev region was defined before or if the dev region is unavailable, set a new dev region
                 PhotonServerSettings.DevRegionSetOnce = true;
                 PhotonServerSettings.DevRegion = _cachedRegionHandler.BestRegion.Code;
             }
-            #endif
+#endif
 
-            #if DEVELOPMENT_BUILD || UNITY_EDITOR
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
             if (!string.IsNullOrEmpty(PhotonServerSettings.DevRegion) && ConnectMethod == ConnectMethod.ConnectToBest)
             {
                 Debug.LogWarning("PUN is in development mode (development build). As the 'dev region' is not empty (" + PhotonServerSettings.DevRegion + ") it overrides the found best region. See PhotonServerSettings.");
@@ -2553,22 +2528,14 @@ namespace Photon.Pun
                     Debug.LogWarning("The 'dev region' (" + PhotonServerSettings.DevRegion + ") was not found in the enabled regions, the first enabled region is picked (" + _finalDevRegion + ")");
                 }
 
-                bool connects = PhotonNetwork.NetworkingClient.ConnectToRegionMaster(_finalDevRegion);
-                if (!connects)
-                {
-                    Debug.LogError("PUN could not ConnectToRegionMaster successfully. Please check error messages.");
-                }
+                PhotonNetwork.NetworkingClient.ConnectToRegionMaster(_finalDevRegion);
                 return;
             }
-            #endif
+#endif
 
             if (NetworkClientState == ClientState.ConnectedToNameServer)
             {
-                bool connects = PhotonNetwork.NetworkingClient.ConnectToRegionMaster(regionHandler.BestRegion.Code);
-                if (!connects)
-                {
-                    Debug.LogError("PUN could not ConnectToRegionMaster successfully. Please check error messages.");
-                }
+                PhotonNetwork.NetworkingClient.ConnectToRegionMaster(regionHandler.BestRegion.Code);
             }
         }
     }

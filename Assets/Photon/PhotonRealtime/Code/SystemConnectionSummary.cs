@@ -108,9 +108,14 @@ namespace Photon.Realtime
             {
                 // protocol = 3 bits! potentially adding WebRTC.
                 this.UsedProtocol = (byte)((int)client.LoadBalancingPeer.UsedProtocol & 7);
-                this.SocketErrorCode = (int)client.LoadBalancingPeer.SocketErrorCode;
+                
+                // COMENTADO POR CONFLICTO DE VERSIONES
+                // this.SocketErrorCode = (int)client.LoadBalancingPeer.SocketErrorCode;
+                this.SocketErrorCode = 0; 
             }
 
+            // COMENTADO POR CONFLICTO DE VERSIONES
+            /*
             this.AppQuits = ConnectionHandler.AppQuits;
             this.AppPause = ConnectionHandler.AppPause;
             this.AppPauseRecent = ConnectionHandler.AppPauseRecent;
@@ -118,6 +123,15 @@ namespace Photon.Realtime
 
             this.AppOutOfFocusRecent = ConnectionHandler.AppOutOfFocusRecent;
             this.NetworkReachable = ConnectionHandler.IsNetworkReachableUnity();
+            */
+
+            // Valores por defecto para evitar errores
+            this.AppQuits = false;
+            this.AppPause = false;
+            this.AppPauseRecent = false;
+            this.AppOutOfFocus = false;
+            this.AppOutOfFocusRecent = false;
+            this.NetworkReachable = true;
 
             this.ErrorCodeFits = this.SocketErrorCode <= short.MaxValue; // socket error code <= short.Max (everything else is a problem)
             this.ErrorCodeWinSock = true;
