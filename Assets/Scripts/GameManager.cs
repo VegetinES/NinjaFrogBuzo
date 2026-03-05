@@ -21,7 +21,8 @@ public class GameManager: MonoBehaviour
         Debug.Log("Jugadores en sala: " + PhotonNetwork.CurrentRoom.PlayerCount);
 
         string[] prefabs = { "Frog", "VirtualGuy", "Ninja" };
-        Vector3[] positions = { new Vector3(-3, 3, 0), new Vector3(3, 3, 0), new Vector3(0, 5, 0) };
+        // Spawn encima del terreno generado (el suelo mínimo es baseHeight=8, así que spawn alto para caer)
+        Vector3[] positions = { new Vector3(-3, 40, 0), new Vector3(3, 40, 0), new Vector3(0, 42, 0) };
 
         int index = Mathf.Clamp(PhotonNetwork.LocalPlayer.ActorNumber - 1, 0, prefabs.Length - 1);
         Debug.Log("🎮 Jugador ActorNumber: " + PhotonNetwork.LocalPlayer.ActorNumber + " → Instanciando: " + prefabs[index]);
