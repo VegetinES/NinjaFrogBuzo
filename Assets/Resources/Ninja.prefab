@@ -135,6 +135,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   jumpForce: 200
+  jumpSound: {fileID: 8300000, guid: f76d3d20c9924be4eb95d606b01ca4f8, type: 3}
+  deathSound: {fileID: 8300000, guid: db65664e919e4984e9029c470c5a20b9, type: 3}
+  fallDeathY: -20
 --- !u!61 &859532295864165372
 BoxCollider2D:
   m_ObjectHideFlags: 0

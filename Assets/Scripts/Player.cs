@@ -9,6 +9,15 @@ public class Player : MonoBehaviour
     private Rigidbody2D rig;
     private Animator anim;
     private bool lastFlipState = false;
+    private bool isDead = false;
+
+    [Header("Audio")]
+    public AudioClip jumpSound;    // Sonido de salto
+    public AudioClip deathSound;   // Sonido de muerte
+    private AudioSource audioSource;
+
+    [Header("Muerte")]
+    public float fallDeathY = -20f; // Si cae por debajo de esta Y, muere
 
     void Start()
     {
@@ -41,6 +50,11 @@ public class Player : MonoBehaviour
             {
                 Debug.LogError("❌ Rigidbody2D NO encontrado!");
             }
+
+            // Audio
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+            audioSource.volume = 0.5f;
             
             // Configurar cámara
             Debug.Log("Buscando Camera.main...");
@@ -75,51 +89,68 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (GetComponent<PhotonView>().IsMine)
+        if (!GetComponent<PhotonView>().IsMine || isDead) return;
+
+        // Detectar caída al vacío
+        if (transform.position.y < fallDeathY)
         {
-            // Movimiento
-            float horizontal = Input.GetAxis("Horizontal");
-            Vector2 newVelocity = (transform.right * speed * horizontal) + (transform.up * rig.velocity.y);
-            rig.velocity = newVelocity;
-            
-            // Debug de movimiento (solo ocasionalmente para no saturar)
-            if (horizontal != 0 && Time.frameCount % 60 == 0) // Cada 60 frames
-            {
-                Debug.Log("Movimiento - Input: " + horizontal + " | Velocidad: " + rig.velocity);
-            }
-            
-            // Flip con RPC optimizado
-            if (rig.velocity.x > 0.1f && lastFlipState == true)
-            {
-                Debug.Log("⬅️ Flip a DERECHA (false)");
-                GetComponent<PhotonView>().RPC("RotateSprite", RpcTarget.All, false);
-                lastFlipState = false;
-            }
-            else if (rig.velocity.x < -0.1f && lastFlipState == false)
-            {
-                Debug.Log("➡️ Flip a IZQUIERDA (true)");
-                GetComponent<PhotonView>().RPC("RotateSprite", RpcTarget.All, true);
-                lastFlipState = true;
-            }
-            
-            // Salto
-            if (Input.GetButtonDown("Jump"))
-            {
-                Debug.Log("🦘 SALTO! - Fuerza: " + jumpForce);
-                rig.AddForce(transform.up * jumpForce);
-            }
-            
-            // Animaciones
-            float velX = Mathf.Abs(rig.velocity.x);
-            float velY = rig.velocity.y;
-            anim.SetFloat("velocityX", velX);
-            anim.SetFloat("velocityY", velY);
-            
-            // Debug de animación (ocasional)
-            if (Time.frameCount % 120 == 0) // Cada 2 segundos
-            {
-                Debug.Log("Animator - velocityX: " + velX + " | velocityY: " + velY);
-            }
+            isDead = true;
+            Debug.Log("💀 ¡Caída al vacío!");
+
+            if (deathSound != null && audioSource != null)
+                audioSource.PlayOneShot(deathSound);
+
+            // Notificar al GameManager
+            GameManager gm = FindObjectOfType<GameManager>();
+            if (gm != null) gm.EndGame();
+            return;
+        }
+
+        // Movimiento
+        float horizontal = Input.GetAxis("Horizontal");
+        Vector2 newVelocity = (transform.right * speed * horizontal) + (transform.up * rig.velocity.y);
+        rig.velocity = newVelocity;
+        
+        // Debug de movimiento (solo ocasionalmente para no saturar)
+        if (horizontal != 0 && Time.frameCount % 60 == 0)
+        {
+            Debug.Log("Movimiento - Input: " + horizontal + " | Velocidad: " + rig.velocity);
+        }
+        
+        // Flip con RPC optimizado
+        if (rig.velocity.x > 0.1f && lastFlipState == true)
+        {
+            Debug.Log("⬅️ Flip a DERECHA (false)");
+            GetComponent<PhotonView>().RPC("RotateSprite", RpcTarget.All, false);
+            lastFlipState = false;
+        }
+        else if (rig.velocity.x < -0.1f && lastFlipState == false)
+        {
+            Debug.Log("➡️ Flip a IZQUIERDA (true)");
+            GetComponent<PhotonView>().RPC("RotateSprite", RpcTarget.All, true);
+            lastFlipState = true;
+        }
+        
+        // Salto
+        if (Input.GetButtonDown("Jump"))
+        {
+            Debug.Log("🦘 SALTO! - Fuerza: " + jumpForce);
+            rig.AddForce(transform.up * jumpForce);
+
+            if (jumpSound != null && audioSource != null)
+                audioSource.PlayOneShot(jumpSound);
+        }
+        
+        // Animaciones
+        float velX = Mathf.Abs(rig.velocity.x);
+        float velY = rig.velocity.y;
+        anim.SetFloat("velocityX", velX);
+        anim.SetFloat("velocityY", velY);
+        
+        // Debug de animación (ocasional)
+        if (Time.frameCount % 120 == 0)
+        {
+            Debug.Log("Animator - velocityX: " + velX + " | velocityY: " + velY);
         }
     }
 
