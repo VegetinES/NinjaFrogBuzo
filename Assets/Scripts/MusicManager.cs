@@ -44,7 +44,7 @@ public class MusicManager : MonoBehaviour
     void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
     {
         // Cambiar música según la escena
-        if (scene.buildIndex == 0 && musicaMenu != null) // Cortinilla / Menu
+        if (scene.buildIndex == 0 && musicaMenu != null) // Cortinilla 
         {
             PlayMusic(musicaMenu);
         }

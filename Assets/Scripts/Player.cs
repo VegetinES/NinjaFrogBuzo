@@ -12,8 +12,8 @@ public class Player : MonoBehaviour
     private bool isDead = false;
 
     [Header("Audio")]
-    public AudioClip jumpSound;    // Sonido de salto
-    public AudioClip deathSound;   // Sonido de muerte
+    public AudioClip jumpSound; // Sonido de salto
+    public AudioClip deathSound; // Sonido de muerte
     private AudioSource audioSource;
 
     [Header("Muerte")]

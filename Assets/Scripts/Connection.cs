@@ -54,7 +54,7 @@ public class Connection: MonoBehaviourPunCallbacks
         }
     }
 
-    // CORREGIDO: Especificar el tipo completo
+    // Especificar el tipo completo
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
     {
         Debug.Log("🎮 NUEVO JUGADOR ENTRÓ A LA SALA: " + newPlayer.NickName);

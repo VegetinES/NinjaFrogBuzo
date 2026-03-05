@@ -8,7 +8,7 @@ public class GameManager: MonoBehaviourPunCallbacks
 {
     [Header("Fin de Partida")]
     public float gameDuration = 120f; // Duración de la partida en segundos
-    public Text timerText;            // UI Text para mostrar el tiempo restante
+    public Text timerText; // UI Text para mostrar el tiempo restante
 
     private float timeRemaining;
     private bool gameEnded = false;
@@ -82,9 +82,7 @@ public class GameManager: MonoBehaviourPunCallbacks
         }
     }
 
-    /// <summary>
-    /// Llamado cuando un jugador cae al vacío o se acaba el tiempo.
-    /// </summary>
+    // Llamado cuando un jugador cae al vacío o se acaba el tiempo.
     public void EndGame()
     {
         if (gameEnded) return;
