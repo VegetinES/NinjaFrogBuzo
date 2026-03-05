@@ -16,9 +16,6 @@ public class Player : MonoBehaviour
     public AudioClip deathSound; // Sonido de muerte
     private AudioSource audioSource;
 
-    [Header("Muerte")]
-    public float fallDeathY = -20f; // Si cae por debajo de esta Y, muere
-
     void Start()
     {
         Debug.Log("=== PLAYER START ===");
@@ -55,20 +52,11 @@ public class Player : MonoBehaviour
             audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.playOnAwake = false;
             audioSource.volume = 0.5f;
-            
-            // Configurar cámara
-            Debug.Log("Buscando Camera.main...");
+
             if (Camera.main != null)
             {
-                Debug.Log("✅ Camera.main encontrada en: " + Camera.main.transform.position);
                 Camera.main.transform.SetParent(transform);
                 Camera.main.transform.localPosition = new Vector3(0, 0, -10);
-                Debug.Log("Cámara reposicionada a localPosition: " + Camera.main.transform.localPosition);
-                Debug.Log("Posición mundial de cámara: " + Camera.main.transform.position);
-            }
-            else
-            {
-                Debug.LogError("❌ Camera.main NO encontrada!");
             }
         }
         else
@@ -90,21 +78,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (!GetComponent<PhotonView>().IsMine || isDead) return;
-
-        // Detectar caída al vacío
-        if (transform.position.y < fallDeathY)
-        {
-            isDead = true;
-            Debug.Log("💀 ¡Caída al vacío!");
-
-            if (deathSound != null && audioSource != null)
-                audioSource.PlayOneShot(deathSound);
-
-            // Notificar al GameManager
-            GameManager gm = FindObjectOfType<GameManager>();
-            if (gm != null) gm.EndGame();
-            return;
-        }
 
         // Movimiento
         float horizontal = Input.GetAxis("Horizontal");
@@ -159,5 +132,16 @@ public class Player : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().flipX = rotate;
         Debug.Log("RPC RotateSprite ejecutado - flipX: " + rotate + " en " + gameObject.name);
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (!GetComponent<PhotonView>().IsMine) return;
+
+        Strawberry strawberry = col.GetComponent<Strawberry>();
+        if (strawberry != null && strawberry.spawner != null)
+        {
+            strawberry.spawner.CollectStrawberry(strawberry.strawberryId, PhotonNetwork.LocalPlayer.ActorNumber);
+        }
     }
 }

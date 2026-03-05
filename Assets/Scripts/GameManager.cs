@@ -8,10 +8,14 @@ public class GameManager: MonoBehaviourPunCallbacks
 {
     [Header("Fin de Partida")]
     public float gameDuration = 120f; // Duración de la partida en segundos
-    public Text timerText; // UI Text para mostrar el tiempo restante
+    public Text timerText;
+
+    [Header("Puntuación")]
+    public Text scoreText;
 
     private float timeRemaining;
     private bool gameEnded = false;
+    private Dictionary<int, int> scores = new Dictionary<int, int>();
 
     void Start()
     {
@@ -29,8 +33,7 @@ public class GameManager: MonoBehaviourPunCallbacks
         Debug.Log("Jugadores en sala: " + PhotonNetwork.CurrentRoom.PlayerCount);
 
         string[] prefabs = { "Frog", "VirtualGuy", "Ninja" };
-        // Spawn encima del terreno generado (el suelo mínimo es baseHeight=8, así que spawn alto para caer)
-        Vector3[] positions = { new Vector3(-3, 40, 0), new Vector3(3, 40, 0), new Vector3(0, 42, 0) };
+        Vector3[] positions = { new Vector3(-3, -1f, 0), new Vector3(3, -1f, 0), new Vector3(0, -1f, 0) };
 
         int index = Mathf.Clamp(PhotonNetwork.LocalPlayer.ActorNumber - 1, 0, prefabs.Length - 1);
         Debug.Log("🎮 Jugador ActorNumber: " + PhotonNetwork.LocalPlayer.ActorNumber + " → Instanciando: " + prefabs[index]);
@@ -82,7 +85,18 @@ public class GameManager: MonoBehaviourPunCallbacks
         }
     }
 
-    // Llamado cuando un jugador cae al vacío o se acaba el tiempo.
+    public void AddScore(int actorNumber, int amount)
+    {
+        if (!scores.ContainsKey(actorNumber))
+            scores[actorNumber] = 0;
+        scores[actorNumber] += amount;
+
+        if (actorNumber == PhotonNetwork.LocalPlayer.ActorNumber && scoreText != null)
+        {
+            scoreText.text = "Fresas: " + scores[actorNumber];
+        }
+    }
+
     public void EndGame()
     {
         if (gameEnded) return;
@@ -90,7 +104,35 @@ public class GameManager: MonoBehaviourPunCallbacks
 
         Debug.Log("🏁 FIN DE PARTIDA");
 
-        // Solo el MasterClient carga la escena para todos
+        int bestActor = -1;
+        int bestScore = -1;
+        foreach (var kvp in scores)
+        {
+            if (kvp.Value > bestScore)
+            {
+                bestScore = kvp.Value;
+                bestActor = kvp.Key;
+            }
+        }
+
+        if (timerText != null)
+        {
+            if (bestActor >= 0)
+            {
+                string winnerName = "Jugador " + bestActor;
+                foreach (var p in PhotonNetwork.PlayerList)
+                {
+                    if (p.ActorNumber == bestActor)
+                        winnerName = p.NickName;
+                }
+                timerText.text = "¡" + winnerName + " gana con " + bestScore + " fresas!";
+            }
+            else
+            {
+                timerText.text = "¡Nadie recogió fresas!";
+            }
+        }
+
         if (PhotonNetwork.IsMasterClient)
         {
             StartCoroutine(ReturnToLobby());
@@ -99,7 +141,7 @@ public class GameManager: MonoBehaviourPunCallbacks
 
     IEnumerator ReturnToLobby()
     {
-        yield return new WaitForSeconds(3f); // Esperar 3 segundos antes de volver
+        yield return new WaitForSeconds(5f);
         PhotonNetwork.LoadLevel(0); // Volver a Cortinilla (índice 0)
     }
 

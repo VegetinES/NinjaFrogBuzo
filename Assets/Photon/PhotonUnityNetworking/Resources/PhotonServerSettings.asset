@@ -40,6 +40,9 @@ MonoBehaviour:
   - RespawnSpaceship
   - RotateSprite
   - RPC_GenerateMap
+  - RPC_CollectStrawberry
+  - RPC_InitSpawner
+  - RPC_SpawnAt
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

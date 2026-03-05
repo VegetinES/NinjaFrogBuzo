@@ -203,7 +203,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &716897509032743945
 MonoBehaviour:
@@ -218,10 +218,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  jumpForce: 200
+  jumpForce: 350
   jumpSound: {fileID: 8300000, guid: f76d3d20c9924be4eb95d606b01ca4f8, type: 3}
   deathSound: {fileID: 8300000, guid: db65664e919e4984e9029c470c5a20b9, type: 3}
-  fallDeathY: -20
 --- !u!114 &4887367078441527981
 MonoBehaviour:
   m_ObjectHideFlags: 0

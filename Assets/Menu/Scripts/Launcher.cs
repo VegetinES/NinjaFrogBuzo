@@ -50,7 +50,7 @@ public class Launcher : MonoBehaviourPunCallbacks {
     string name = playerNameInputField.text;
     if (!string.IsNullOrEmpty(name)) {
       PhotonNetwork.NickName = name;
-      titleWelcomeText.text = $"Welcome, {name}!";
+      titleWelcomeText.text = $"Bienvenido/a, {name}!";
       MenuManager.Instance.OpenMenu("title");
       playerNameInputField.text = "";
     } else {
