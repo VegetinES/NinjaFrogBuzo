@@ -1,17 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 using Photon.Pun;
 
 public class GameManager: MonoBehaviourPunCallbacks
 {
     [Header("Fin de Partida")]
     public float gameDuration = 120f; // Duración de la partida en segundos
-    public Text timerText;
+    public TMP_Text timerText;
 
     [Header("Puntuación")]
-    public Text scoreText;
+    public TMP_Text scoreText;
 
     private float timeRemaining;
     private bool gameEnded = false;
