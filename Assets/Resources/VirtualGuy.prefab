@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: -6610602502041127452}
   m_Layer: 0
   m_Name: VirtualGuy
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43581326c307d1844b8b553f4c95e24d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 3
   jumpForce: 350
   jumpSound: {fileID: 8300000, guid: f76d3d20c9924be4eb95d606b01ca4f8, type: 3}
   deathSound: {fileID: 8300000, guid: db65664e919e4984e9029c470c5a20b9, type: 3}

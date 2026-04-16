@@ -33,7 +33,7 @@ public class GameManager: MonoBehaviourPunCallbacks
         Debug.Log("Jugadores en sala: " + PhotonNetwork.CurrentRoom.PlayerCount);
 
         string[] prefabs = { "Frog", "VirtualGuy", "Ninja" };
-        Vector3[] positions = { new Vector3(-3, -1f, 0), new Vector3(3, -1f, 0), new Vector3(0, -1f, 0) };
+        Vector3[] positions = { new Vector3(-3, -2f, 0), new Vector3(3, -2f, 0), new Vector3(0, -2f, 0) };
 
         int index = Mathf.Clamp(PhotonNetwork.LocalPlayer.ActorNumber - 1, 0, prefabs.Length - 1);
         Debug.Log("🎮 Jugador ActorNumber: " + PhotonNetwork.LocalPlayer.ActorNumber + " → Instanciando: " + prefabs[index]);
