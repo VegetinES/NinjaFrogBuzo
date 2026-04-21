@@ -1,14 +1,16 @@
 using UnityEngine;
+using Photon.Pun;
 
-public class Murcielago : MonoBehaviour
+public class Murcielago : MonoBehaviourPun, IPunObservable
 {
-    private Transform jugador;
     [SerializeField] private float distancia;
     public Vector3 puntoInicial;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
 
-    // Start is called before the first frame update
+    // El jugador más cercano (solo válido en MasterClient)
+    public Transform jugador { get; private set; }
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -18,39 +20,60 @@ public class Murcielago : MonoBehaviour
         // Inicializar a distancia grande para que el Animator no dispare Seguir antes de encontrar al jugador
         animator.SetFloat("Distancia", 999f);
 
-        GameObject jugadorObj = GameObject.FindGameObjectWithTag("Player");
-        if (jugadorObj != null)
-        {
-            jugador = jugadorObj.transform;
-            distancia = Vector2.Distance(transform.position, jugador.position);
-            animator.SetFloat("Distancia", distancia);
-        }
+        ActualizarJugadorMasCercano();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (jugador == null)
-        {
-            GameObject jugadorObj = GameObject.FindGameObjectWithTag("Player");
-            if (jugadorObj != null)
-                jugador = jugadorObj.transform;
-            return;
-        }
+        // Solo el MasterClient (o modo offline) ejecuta la IA
+        if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient) return;
+
+        ActualizarJugadorMasCercano();
+
+        if (jugador == null) return;
 
         distancia = Vector2.Distance(transform.position, jugador.position);
         animator.SetFloat("Distancia", distancia);
     }
 
+    private void ActualizarJugadorMasCercano()
+    {
+        GameObject[] jugadores = GameObject.FindGameObjectsWithTag("Player");
+        float menorDistancia = Mathf.Infinity;
+        Transform masCercano = null;
+
+        foreach (GameObject j in jugadores)
+        {
+            float d = Vector2.Distance(transform.position, j.transform.position);
+            if (d < menorDistancia)
+            {
+                menorDistancia = d;
+                masCercano = j.transform;
+            }
+        }
+
+        jugador = masCercano;
+    }
+
     public void Girar(Vector3 objetivo)
     {
-        if (transform.position.x < objetivo.x)
+        spriteRenderer.flipX = transform.position.x < objetivo.x;
+    }
+
+    // Sincroniza posición, distancia y flip con todos los clientes
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
         {
-            spriteRenderer.flipX = true;
+            stream.SendNext(transform.position);
+            stream.SendNext(animator.GetFloat("Distancia"));
+            stream.SendNext(spriteRenderer.flipX);
         }
         else
         {
-            spriteRenderer.flipX = false;
+            transform.position = (Vector3)stream.ReceiveNext();
+            animator.SetFloat("Distancia", (float)stream.ReceiveNext());
+            spriteRenderer.flipX = (bool)stream.ReceiveNext();
         }
     }
 }
