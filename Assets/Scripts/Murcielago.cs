@@ -1,15 +1,18 @@
+using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
 public class Murcielago : MonoBehaviourPun, IPunObservable
 {
     [SerializeField] private float distancia;
+    [SerializeField] private float cooldownQuitarFresa = 1f;
     public Vector3 puntoInicial;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
 
     // El jugador más cercano (solo válido en MasterClient)
     public Transform jugador { get; private set; }
+    private readonly Dictionary<int, float> ultimoGolpePorJugador = new Dictionary<int, float>();
 
     void Start()
     {
@@ -75,5 +78,69 @@ public class Murcielago : MonoBehaviourPun, IPunObservable
             animator.SetFloat("Distancia", (float)stream.ReceiveNext());
             spriteRenderer.flipX = (bool)stream.ReceiveNext();
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        IntentarQuitarFresa(other);
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        IntentarQuitarFresa(other);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        IntentarQuitarFresa(collision.collider);
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        IntentarQuitarFresa(collision.collider);
+    }
+
+    private void IntentarQuitarFresa(Collider2D other)
+    {
+        if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient) return;
+        if (!TryGetActorNumber(other, out int actorNumber)) return;
+
+        float tiempoActual = Time.time;
+        if (ultimoGolpePorJugador.TryGetValue(actorNumber, out float ultimoGolpe) && tiempoActual - ultimoGolpe < cooldownQuitarFresa)
+            return;
+
+        ultimoGolpePorJugador[actorNumber] = tiempoActual;
+
+        if (PhotonNetwork.IsConnected)
+            photonView.RPC(nameof(RPC_QuitarFresa), RpcTarget.All, actorNumber);
+        else
+            QuitarFresa(actorNumber);
+    }
+
+    private bool TryGetActorNumber(Collider2D other, out int actorNumber)
+    {
+        actorNumber = -1;
+
+        Player player = other.GetComponentInParent<Player>();
+        if (player == null) return false;
+
+        PhotonView playerView = player.GetComponent<PhotonView>();
+        if (playerView == null || playerView.Owner == null) return false;
+
+        actorNumber = playerView.Owner.ActorNumber;
+        return true;
+    }
+
+    [PunRPC]
+    private void RPC_QuitarFresa(int actorNumber)
+    {
+        QuitarFresa(actorNumber);
+    }
+
+    private void QuitarFresa(int actorNumber)
+    {
+        GameManager gameManager = FindFirstObjectByType<GameManager>();
+        if (gameManager != null)
+            gameManager.AddScore(actorNumber, -1);
     }
 }

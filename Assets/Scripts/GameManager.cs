@@ -89,7 +89,7 @@ public class GameManager: MonoBehaviourPunCallbacks
     {
         if (!scores.ContainsKey(actorNumber))
             scores[actorNumber] = 0;
-        scores[actorNumber] += amount;
+        scores[actorNumber] = Mathf.Max(0, scores[actorNumber] + amount);
 
         if (actorNumber == PhotonNetwork.LocalPlayer.ActorNumber && scoreText != null)
         {
